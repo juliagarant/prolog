@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h> // for strcspn
+#include <stdbool.h> // for bool
 
 int main()
 {
@@ -28,19 +29,28 @@ int main()
         count++;
     }
 
-    // // generate prolog code for map based on input file
-    // fprintf(fpProlog, "map( ");
+    // generate prolog code for map based on input file
+    fprintf(fpProlog, "map( ");
     
     printf("count =%d\n", count);
+
+    bool pair = false;
     
     for (int i = 0; i < count; i++){
-        for (int j = 0; j < count; j++){
-    //         fprintf(fpProlog, "[%d, %d]", matrix[i][j]);
+        for (int j = i+1; j < count; j++){
+            if(matrix[i][j] == 1){ 
+                if(!pair){ // first occurrance of pair
+                    pair = true;
+                }else{
+                    fprintf(fpProlog, ","); 
+                }
+                fprintf(fpProlog,"[%d, %d]", i+1, j+1);
+            }
         }       
      }
-        
-    // // close line of map code prolog
-    // fprintf(fpProlog, ").\n"); 
+     
+    // close line of map code prolog
+    fprintf(fpProlog, ").\n"); 
 
     // rest of prolog code
     /*
