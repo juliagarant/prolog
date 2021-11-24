@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h> // for strcspn
 
 int main()
 {
@@ -16,28 +17,29 @@ int main()
     int count = 0;
     // read in matrix.txt
     while(!feof(fp)){
-        count++;
-
         fgets(line, sizeof(line), fp);
         line[strcspn(line,"\n")] = 0; // get rid of \n
 
-        // fill matrix
+        // fill 2d matrix var w adjacency matrix
         for (int i = 0; i!= strlen(line); i++) { 
             matrix[count][i] = line[i] - '0';
         }
+
+        count++;
     }
 
     // // generate prolog code for map based on input file
     // fprintf(fpProlog, "map( ");
     
+    printf("count =%d\n", count);
+    
     for (int i = 0; i < count; i++){
         for (int j = 0; j < count; j++){
     //         fprintf(fpProlog, "[%d, %d]", matrix[i][j]);
-    printf("%d", matrix[i][j]);
         }       
      }
         
-    // // close line of code prolog
+    // // close line of map code prolog
     // fprintf(fpProlog, ").\n"); 
 
     // rest of prolog code
