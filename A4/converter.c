@@ -30,7 +30,7 @@ int main()
     }
 
     // generate prolog code for map based on input file
-    fprintf(fpProlog, "map( ");
+    fprintf(fpProlog, "map([");
     
     printf("count =%d\n", count);
 
@@ -50,25 +50,25 @@ int main()
      }
      
     // close line of map code prolog
-    fprintf(fpProlog, ").\n"); 
+    fprintf(fpProlog, "]).\n"); 
 
     // rest of prolog code
-    /*
-    fprintf(fpProlog, "colours(['R','G']).");
+    
+    fprintf(fpProlog, "colours(['R','G']).\n");
     // used to be result
-    fprintf(fpProlog, "checkBipartite(Pairs):- map(Map),colours(Colours),start(Map, Colours, Pairs).");
+    fprintf(fpProlog, "\ncheckBipartite(Pairs):- \nmap(Map),colours(Colours),\nstart(Map, Colours, Pairs).\n");
 
-    fprintf(fpProlog, "start(Map, Colours, Pairs):- getVertex(Map,AllVertex),sort(AllVertex,SortedVertex),colourVertex(SortedVertex,Colours,Pairs),\+sameColour(Map,Pairs).");
+    fprintf(fpProlog, "\nstart(Map, Colours, Pairs):- \ngetVertex(Map,AllVertex),\nsort(AllVertex,SortedVertex),\ncolourVertex(SortedVertex,Colours,Pairs),\n\\+sameColour(Map,Pairs).\n");
     
-    fprintf(fpProlog, "getVertex(Map,Vertex):- getVertex(Map,Vertex,[]).");
-    fprintf(fpProlog, "getVertex([], Vertex, Vertex).");
-    fprintf(fpProlog, "getVertex([[X,Y]|RestOfMap], Vertex, TempList):- getVertex(RestOfMap, Vertex,[X,Y|TempList]).");
+    fprintf(fpProlog, "\ngetVertex(Map,Vertex):- \ngetVertex(Map,Vertex,[]).\n");
+    fprintf(fpProlog, "getVertex([], Vertex, Vertex).\n");
+    fprintf(fpProlog, "getVertex([[X,Y]|RestOfMap], Vertex, TempList):- \ngetVertex(RestOfMap, Vertex,[X,Y|TempList]).\n");
     
-    fprintf(fpProlog, "colourVertex([],_,[]).");
-    fprintf(fpProlog, "colourVertex([V|RestOfVertex],Colours,[[V,C]|RestOfPairs]):-member(C,Colours), colourVertex(RestOfVertex,Colours,RestOfPairs).");
+    fprintf(fpProlog, "\ncolourVertex([],_,[]).\n");
+    fprintf(fpProlog, "colourVertex([V|RestOfVertex],Colours,[[V,C]|RestOfPairs]):-\nmember(C,Colours), \ncolourVertex(RestOfVertex,Colours,RestOfPairs).\n");
     
-    fprintf(fpProlog, "sameColour(Map,Pairs):- member([J,C],Pairs), member([K,C],Pairs), neighbors(J,K,Map).");
+    fprintf(fpProlog, "\nsameColour(Map,Pairs):- \nmember([J,C],Pairs), \nmember([K,C],Pairs), \nneighbors(J,K,Map).\n");
 
-    fprintf(fpProlog, "neighbors(J,K,Map):-member([J,K], Map);member([K,J], Map).");
-    */
+    fprintf(fpProlog, "\nneighbors(J,K,Map):-\nmember([J,K], Map);\nmember([K,J], Map).\n");
+    
 }
